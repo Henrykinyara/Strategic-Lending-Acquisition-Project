@@ -1,0 +1,1169 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/1/2025 11:51:27 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADMINISTRATOR"
+  DTS:CreatorName="ADMINISTRATOR\henry"
+  DTS:DTSID="{F44911F2-29C0-4184-AAD7-48880BD31FED}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{51A47D6C-67FC-4764-8B55-23FC9103E631}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADMINISTRATOR.HenryKinyaraDatabase]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{40572D25-12E3-4857-85C1-9E9571E20424}"
+      DTS:ObjectName="ADMINISTRATOR.HenryKinyaraDatabase">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADMINISTRATOR;Initial Catalog=HenryKinyaraDatabase;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{40572D25-12E3-4857-85C1-9E9571E20424}ADMINISTRATOR.HenryKinyaraDatabase;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{F3F55B50-B2D8-4D81-813F-014A9B859A88}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\henry\Documents\HK Practice Projects\BI Analyst Case Study\Data\BI_Analyst_Case_Study_Data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{34412E44-7893-4E30-AB20-9ABD4C8DD031}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\henry\Documents\HK Practice Projects\BI Analyst Case Study\Data\BI_Analyst_Case_Study_Data.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data into SQL Database"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DAE067D4-F275-4881-9BEE-08E136AF1F72}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data into SQL Database"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data into SQL Database\Disbursements"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Disbursements"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Disbursements$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data into SQL Database\Disbursements.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[customer_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[customer_id]"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[disb_date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[disb_date]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[disb_date]"
+                      name="disb_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[tenure]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[tenure]"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[tenure]"
+                      name="tenure"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[account_num]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[account_num]"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[account_num]"
+                      name="account_num"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[loan_amount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[loan_amount]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[loan_amount]"
+                      name="loan_amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[loan_fee]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[loan_fee]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[loan_fee]"
+                      name="loan_fee"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[customer_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[disb_date]"
+                      dataType="date"
+                      name="disb_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[tenure]"
+                      dataType="wstr"
+                      length="255"
+                      name="tenure" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[account_num]"
+                      dataType="wstr"
+                      length="255"
+                      name="account_num" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[loan_amount]"
+                      dataType="r8"
+                      name="loan_amount" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].ExternalColumns[loan_fee]"
+                      dataType="r8"
+                      name="loan_fee" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[customer_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[disb_date]"
+                      dataType="date"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[disb_date]"
+                      name="disb_date" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[tenure]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[tenure]"
+                      name="tenure" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[account_num]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[account_num]"
+                      name="account_num" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[loan_amount]"
+                      dataType="r8"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[loan_amount]"
+                      name="loan_amount" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[loan_fee]"
+                      dataType="r8"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[loan_fee]"
+                      name="loan_fee" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data into SQL Database\Load Date"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Load Date"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data into SQL Database\Load Date.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data into SQL Database\Load Date.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Output].Columns[Load Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Output].Columns[Load Date]"
+                      name="Load Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data into SQL Database\Load Date.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data into SQL Database\Load Date 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Load Date 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data into SQL Database\Load Date 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data into SQL Database\Load Date 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Output].Columns[Load Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Output].Columns[Load Date]"
+                      name="Load Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data into SQL Database\Load Date 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data into SQL Database\Repayments"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Repayments"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Repayments$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data into SQL Database\Repayments.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[date_time]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[date_time]"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[date_time]"
+                      name="date_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[customer_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[customer_id]"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[amount]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[amount]"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[amount]"
+                      name="amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[rep_month]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[rep_month]"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[rep_month]"
+                      name="rep_month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[repayment_type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[repayment_type]"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[repayment_type]"
+                      name="repayment_type"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[date_time]"
+                      dataType="wstr"
+                      length="255"
+                      name="date_time" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[customer_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[amount]"
+                      dataType="r8"
+                      name="amount" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[rep_month]"
+                      dataType="r8"
+                      name="rep_month" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].ExternalColumns[repayment_type]"
+                      dataType="wstr"
+                      length="255"
+                      name="repayment_type" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[date_time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[date_time]"
+                      name="date_time" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[customer_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[amount]"
+                      dataType="r8"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[amount]"
+                      name="amount" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[rep_month]"
+                      dataType="r8"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[rep_month]"
+                      name="rep_month" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[repayment_type]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[repayment_type]"
+                      name="repayment_type" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data into SQL Database\SQL Database"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="SQL Database"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Disbursements]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data into SQL Database\SQL Database.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ADMINISTRATOR.HenryKinyaraDatabase]"
+                  connectionManagerRefId="Package.ConnectionManagers[ADMINISTRATOR.HenryKinyaraDatabase]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].Columns[disb_date]"
+                      cachedDataType="date"
+                      cachedName="disb_date"
+                      externalMetadataColumnId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[disb_date]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[disb_date]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].Columns[tenure]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="tenure"
+                      externalMetadataColumnId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[tenure]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[tenure]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].Columns[account_num]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="account_num"
+                      externalMetadataColumnId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[account_num]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[account_num]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].Columns[loan_amount]"
+                      cachedDataType="r8"
+                      cachedName="loan_amount"
+                      externalMetadataColumnId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[loan_amount]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[loan_amount]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].Columns[loan_fee]"
+                      cachedDataType="r8"
+                      cachedName="loan_fee"
+                      externalMetadataColumnId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[loan_fee]"
+                      lineageId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output].Columns[loan_fee]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].Columns[Load Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Load Date"
+                      externalMetadataColumnId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[Load Date]"
+                      lineageId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Output].Columns[Load Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[disb_date]"
+                      dataType="dbTimeStamp"
+                      name="disb_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[tenure]"
+                      dataType="wstr"
+                      length="255"
+                      name="tenure" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[account_num]"
+                      dataType="wstr"
+                      length="255"
+                      name="account_num" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[loan_amount]"
+                      dataType="r8"
+                      name="loan_amount" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[loan_fee]"
+                      dataType="r8"
+                      name="loan_fee" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input].ExternalColumns[Load Date]"
+                      dataType="dbTimeStamp"
+                      name="Load Date" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data into SQL Database\SQL Database.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\SQL Database.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\SQL Database.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\SQL Database.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data into SQL Database\Sql Database"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Sql Database"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Repayments]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data into SQL Database\Sql Database.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ADMINISTRATOR.HenryKinyaraDatabase]"
+                  connectionManagerRefId="Package.ConnectionManagers[ADMINISTRATOR.HenryKinyaraDatabase]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].Columns[date_time]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="date_time"
+                      externalMetadataColumnId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[date_time]"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[date_time]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].Columns[amount]"
+                      cachedDataType="r8"
+                      cachedName="amount"
+                      externalMetadataColumnId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[amount]"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[amount]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].Columns[rep_month]"
+                      cachedDataType="r8"
+                      cachedName="rep_month"
+                      externalMetadataColumnId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[rep_month]"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[rep_month]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].Columns[repayment_type]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="repayment_type"
+                      externalMetadataColumnId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[repayment_type]"
+                      lineageId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output].Columns[repayment_type]" />
+                    <inputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].Columns[Load Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Load Date"
+                      externalMetadataColumnId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[Load Date]"
+                      lineageId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Output].Columns[Load Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[date_time]"
+                      dataType="wstr"
+                      length="255"
+                      name="date_time" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[amount]"
+                      dataType="r8"
+                      name="amount" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[rep_month]"
+                      dataType="r8"
+                      name="rep_month" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[repayment_type]"
+                      dataType="wstr"
+                      length="255"
+                      name="repayment_type" />
+                    <externalMetadataColumn
+                      refId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input].ExternalColumns[Load Date]"
+                      dataType="dbTimeStamp"
+                      name="Load Date" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data into SQL Database\Sql Database.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Sql Database.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data into SQL Database\Sql Database.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data into SQL Database\Sql Database.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data into SQL Database.Paths[Derived Column Output]"
+              endId="Package\Data into SQL Database\SQL Database.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Data into SQL Database\Load Date.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data into SQL Database.Paths[Derived Column Output1]"
+              endId="Package\Data into SQL Database\Sql Database.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Data into SQL Database\Load Date 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data into SQL Database.Paths[Excel Source Output]"
+              endId="Package\Data into SQL Database\Load Date.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Data into SQL Database\Disbursements.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data into SQL Database.Paths[Excel Source Output1]"
+              endId="Package\Data into SQL Database\Load Date 1.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Data into SQL Database\Repayments.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\Data into SQL Database"
+          TopLeft="410.833310886391,103.999999276797" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data into SQL Database">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\Data into SQL Database\Load Date"
+          TopLeft="220.833321267533,144.733332326876" />
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\Data into SQL Database\SQL Database"
+          TopLeft="212.499988389512,259.999998191992" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\Data into SQL Database\Sql Database"
+          TopLeft="507.499972271424,260.866664852632" />
+        <NodeLayout
+          Size="148,41.6"
+          Id="Package\Data into SQL Database\Disbursements"
+          TopLeft="217.499988116324,32.0666664436791" />
+        <EdgeLayout
+          Id="Package\Data into SQL Database.Paths[Excel Source Output]"
+          TopLeft="287.766654691929,73.6666664436791">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71.0666658831967"
+              Start="0,0"
+              End="0,63.5666658831967">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5666658831967" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.8251171875,26.1617509103484,55.650234375,11.2431640625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data into SQL Database.Paths[Derived Column Output]"
+          TopLeft="284.866654828522,186.333332326876">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73.6666658651166"
+              Start="0,0"
+              End="0,66.1666658651166">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.1666658651166" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.8251171875,27.4617509013083,55.650234375,11.2431640625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\Data into SQL Database\Repayments"
+          TopLeft="504.999972408018,32.933333104319" />
+        <NodeLayout
+          Size="135.2,41.6"
+          Id="Package\Data into SQL Database\Load Date 1"
+          TopLeft="504.999972408018,136.933332381116" />
+        <EdgeLayout
+          Id="Package\Data into SQL Database.Paths[Excel Source Output1]"
+          TopLeft="572.999972408018,74.533333104319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.399999276797"
+              Start="0,0"
+              End="0,54.899999276797">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.899999276797" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.8837109375,21.8381832321485,55.767421875,11.2236328125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data into SQL Database.Paths[Derived Column Output1]"
+          TopLeft="575.249972339721,178.533332381116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.3333324715163"
+              Start="0,0"
+              End="0,74.8333324715163">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.8333324715163" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-27.8837109375,31.8048498295081,55.767421875,11.2236328125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data into SQL Database\SQL Database">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data into SQL Database\Sql Database">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data into SQL Database\Disbursements">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data into SQL Database\Repayments">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
